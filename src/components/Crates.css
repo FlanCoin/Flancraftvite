@@ -1,0 +1,392 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@700&display=swap');
+
+.crates-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: column;
+  padding: 5vh 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.crates-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5)),
+    url('/src/assets/backcrates.webp') no-repeat center center;
+  background-size: cover;
+  z-index: 1;
+  animation: zoomEffect 15s ease-in-out infinite;
+}
+
+@keyframes zoomEffect {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+.crates-content {
+  z-index: 2;
+  height: 75%;
+  width: 85%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  transform: translateY(2vh);
+}
+
+.crates-title {
+  font-size: 3.8vh;
+  font-weight: 900;
+  margin: 1vh 0;
+  color: #7DCBEA;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 15px rgba(125, 203, 234, 0.8);
+}
+
+.crates-description {
+  font-size: 2.2vh;
+  max-width: 600px;
+  margin-bottom: 2vh;
+  color: #E0E2DB;
+  border: 2px solid #7DCBEA;
+  padding: 1.2vh 3vw;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.crates-description .buy-key-button {
+  background-color: #34db78;
+  color: #fff;
+  font-size: 2.5vh;
+  width: 4.5vh;
+  height: 4.5vh;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  padding: 0;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: keyGlow 1.5s ease-in-out infinite;
+  margin-left: 10px;
+}
+
+@keyframes keyGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px #34db78, 0 0 30px #34db78;
+  }
+  50% {
+    box-shadow: 0 0 5px #34db78, 0 0 10px #34db78;
+  }
+}
+
+/* Efecto hover para el botón */
+.crates-description .buy-key-button:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  box-shadow: 0 0 30px #fff, 0 0 40px #e74c3c, 0 0 50px #e74c3c; /* Brillo más intenso */
+}
+
+.crates-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 1vh;
+  width: 100%;
+  height: auto;
+  align-items: center;
+  padding-right: 80px;
+}
+
+.crate-card {
+  width: 40vw;
+  height: 14vh;
+  margin: 1vh 1vw;
+  perspective: 5000px;
+  cursor: pointer;
+  transition: transform 0.4s ease, box-shadow 0.3s;
+}
+
+
+.crate-card:nth-child(odd) .crate-card-inner {
+  transform-origin: 50%;
+}
+
+.crate-card:nth-child(even) .crate-card-inner {
+  transform-origin: 60%;
+}
+
+.crate-card-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.5s;
+}
+
+.crate-card.flipped:nth-child(odd) .crate-card-inner {
+  transform: rotateY(180deg); /* Girar hacia la izquierda */
+}
+
+.crate-card.flipped:nth-child(even) .crate-card-inner {
+  transform: rotateY(-180deg); /* Girar hacia la derecha */
+}
+
+.crate-card.flipped .crate-card-inner {
+  transform: rotateY(-180deg);
+}
+
+.crate-card-front, .crate-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 15px;
+  padding: 1vh 2vw;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.crate-card-front {
+  background: linear-gradient(135deg, rgba(84, 181, 194, 0.95), rgba(98, 100, 102, 0.9));
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #FFD700;
+  opacity: 0.95;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(0, 0, 0, 0.5);
+}
+
+.crate-card-front h3 {
+  font-size: 2.8vh;
+  margin: 0.3vh 0;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 20px rgba(255, 215, 0, 0.3);
+}
+
+.crate-card-front p {
+  font-size: 1.6vh;
+  margin: 0.3vh 0;
+  color: #F0F0F0;
+  text-align: center;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+  line-height: 1.4;
+}
+
+/* Estilo de la parte trasera de las cartas */
+.crate-card-back {
+  background: linear-gradient(135deg, rgba(58, 95, 68, 0.95), rgba(34, 102, 50, 0.9));
+  color: #ffffff;
+  transform: rotateY(180deg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6), 0 10px 20px rgba(76, 158, 117, 0.5);
+}
+.crate-card-back h3 {
+  font-size: 2.5vh;
+  margin: 0;
+  padding: 0;
+  color: #FFD700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+}
+.crate-card-back p {
+  font-size: 1.6vh;
+  margin: 0.5vh 0;
+  padding: 0 1vw;
+  color: #e5e5e5;
+  text-align: center;
+  line-height: 1.2;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+  font-style: italic;
+}
+
+
+.particle-container {
+  position: absolute;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.particle {
+  position: absolute;
+  width: 2px;
+  height: 30px;
+  background-color: rgba(125, 203, 234, 0.9);
+  border-radius: 50%;
+  animation: particleAnimation 6s linear infinite;
+}
+
+@keyframes particleAnimation {
+  0% { transform: translateY(100vh); opacity: 0; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-100vh); opacity: 0; }
+}
+
+.crates-description .buy-key-button {
+  background-color: transparent;
+  width: auto;
+  height: auto;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  margin-left: 10px;
+  margin-right: -20px; /* Ajuste del margen derecho */
+  animation: bounceAnimation 2.5s ease-in-out infinite; /* Movimiento de subida y bajada */
+}
+
+.buy-key-button .key-icon {
+  width: 6vh; /* Ajuste del ancho */
+  height: 6vh; /* Ajuste de la altura */
+  transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out; /* Transiciones para suavizar los cambios */
+  filter: brightness(1) drop-shadow(0 0 10px rgba(255, 223, 0, 0.8)); /* Sombra ligera en los bordes */
+}
+
+/* Efecto hover para la imagen */
+.buy-key-button .key-icon:hover {
+  transform: scale(1.1); /* Aumenta ligeramente el tamaño */
+  filter: brightness(2) drop-shadow(0 0 30px rgba(255, 223, 0, 1)), 
+          drop-shadow(0 0 50px rgba(255, 223, 0, 0.8)); /* Brillo más intenso en los bordes */
+  mix-blend-mode: screen; /* Mezcla el brillo con el contorno de la llave */
+}
+
+/* Animación de subida y bajada */
+@keyframes bounceAnimation {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px); /* Sube ligeramente */
+  }
+}
+
+/* Parpadeo en los bordes de la llave */
+@keyframes borderBlink {
+  0%, 100% {
+    filter: drop-shadow(0 0 10px rgba(255, 223, 0, 0.8)); /* Sombra suave en los bordes */
+  }
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 223, 0, 1)); /* Sombra más intensa en los bordes */
+  }
+}
+
+.crate-card-back .emoji-icon {
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+  vertical-align: middle;
+}
+
+
+/* Media Queries */
+@media (max-width: 1024px) {
+  .crates-title {
+    font-size: 3.5vh;
+  }
+  .crates-description {
+    font-size: 2vh;
+    padding: 1.2vh 2vw;
+  }
+  .crate-card {
+    width: 80%;
+  }
+  .crate-card h3 {
+    font-size: 2.3vh;
+  }
+  .crate-button {
+    font-size: 1.5vh;
+    padding: 1vh 3vw;
+  }
+  .crates-description .buy-key-button {
+    width: 5vh;
+    height: 5vh;
+  }
+}
+
+@media (max-width: 768px) {
+  .crates-title {
+    font-size: 3.2vh;
+  }
+  .crates-description {
+    font-size: 1.8vh;
+    padding: 1vh 2vw;
+  }
+  .crate-card {
+    width: 85%;
+  }
+  .crate-card h3 {
+    font-size: 2vh;
+  }
+  .crate-button {
+    font-size: 1.4vh;
+    padding: 1vh 2.5vw;
+  }
+  .crates-description .buy-key-button {
+    width: 4.5vh;
+    height: 4.5vh;
+  }
+}
+
+@media (max-width: 480px) {
+  .crates-title {
+    font-size: 2.8vh;
+  }
+  
+  .crates-description {
+    font-size: 1.6vh;
+    padding: 0.8vh 2vw;
+  }
+
+  /* Ajuste de la carta para centrarla en móviles */
+  .crates-grid {
+    align-items: center; /* Asegura que todo dentro del grid esté centrado */
+    padding: 0; /* Elimina cualquier padding adicional */
+  }
+
+  .crate-card {
+    width: 90%;
+    margin: 1vh auto; /* Centra horizontalmente la carta */
+    transform: translateX(0); /* Asegura que no haya ningún desplazamiento hacia la izquierda */
+  }
+
+  .crate-card h3 {
+    font-size: 1.8vh;
+  }
+
+  .crate-button {
+    font-size: 1.2vh;
+    padding: 0.8vh 2vw;
+  }
+
+  .crates-description .buy-key-button {
+    width: 4vh;
+    height: 4vh;
+  }
+}
+

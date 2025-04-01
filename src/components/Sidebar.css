@@ -1,0 +1,320 @@
+/* src/styles/Sidebar.css */
+
+/* Personalización del panel lateral */
+.sidebar {
+    position: fixed;
+    top: 50%;
+    right: 0;
+    width: 50px; /* Ajuste del ancho del sidebar */
+    height: 200px; /* Ajuste de la altura del sidebar */
+    background: url('/src/assets/sidebar.png') no-repeat center center; /* Imagen de fondo */
+    background-size: cover; /* Ajusta la imagen para cubrir todo el fondo */
+    border: 3px solid #412624; /* Borde de todo el contenedor */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra para profundidad */
+    z-index: 1000; /* Asegúrate de que esté por encima de otros elementos */
+    transform: translateY(-50%) translateX(-10px); /* Centra verticalmente el sidebar y lo desplaza más hacia la izquierda */
+    transition: transform 0.3s ease, width 0.3s ease, height 0.3s ease; /* Animación para expandir y contraer el sidebar */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra verticalmente los iconos */
+    padding: 5px 0; /* Espacio superior e inferior */
+    box-sizing: border-box; /* Incluye el padding en el tamaño total del elemento */
+}
+
+/* Estado contraído del sidebar */
+.sidebar.collapsed {
+    right: -60px; /* Desplaza el sidebar hacia la derecha, dejando solo visible el botón */
+}
+
+/* Botón de retraer el panel lateral */
+.sidebar-toggle {
+    position: absolute;
+    left: -27px; /* Mantiene la posición para que el botón sea visible cuando el sidebar esté oculto */
+    top: 50%;
+    width: 20px;
+    height: 20px;
+    background: #847865;
+    border: 3px solid #412624;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1001;
+    transform: translateY(-50%); /* Elimina la rotación del botón */
+    transition: transform 0.3s ease, width 0.3s ease, background-color 0.3s ease;
+}
+
+/* Flecha personalizada del botón de toggle */
+.sidebar-toggle::before {
+    content: "➜"; /* Flecha personalizada apuntando a la derecha por defecto */
+    color: #402825;
+    font-size: 18px;
+    transition: opacity 0.3s ease, transform 0.3s ease; /* Transición suave para la flecha */
+    opacity: 1;
+}
+
+
+/* Estado contraído del botón de toggle */
+.sidebar.collapsed .sidebar-toggle::before {
+    content: "➜"; /* Flecha apuntando hacia la izquierda */
+    color: #402825; /* Color de la flecha */
+    transform: rotate(180deg); /* Rotar la flecha para apuntar a la izquierda */
+}
+
+/* Animación del botón al contraer/expandir */
+.sidebar-toggle:hover {
+    width: 30px; /* Se estira hacia la derecha */
+    transform: translateY(-50%) translateX(-10px); /* Acompaña el estiramiento */
+}
+
+/* Cambiar el color de la flecha al pasar el ratón cuando el sidebar está expandido */
+.sidebar-toggle:hover::before {
+    color: #FFFFFF; /* Cambia color en hover */
+}
+
+/* Cambiar el color de la flecha al pasar el ratón cuando el sidebar está contraído */
+.sidebar.collapsed .sidebar-toggle:hover::before {
+    color: #FFFFFF; /* Cambia color en hover */
+    opacity: 1; /* Asegura que la flecha sea visible */
+}
+
+/* Nueva flecha apuntando hacia la izquierda cuando el sidebar está contraído */
+.sidebar.collapsed .sidebar-toggle::after {
+    content: "➜"; /* Flecha personalizada apuntando a la izquierda */
+    color: #402825;
+    font-size: 18px;
+    position: absolute;
+    opacity: 0;
+    transform: rotate(180deg); /* Flecha apuntando hacia la izquierda */
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sidebar.collapsed .sidebar-toggle:hover::after {
+    opacity: 1; /* Hace visible la nueva flecha */
+    color: #FFFFFF; /* Cambia color en hover */
+}
+
+/* Mantén los estilos existentes, pero ajusta las clases para que apliquen a .sidebar-link */
+.sidebar-nav .sidebar-link {
+    display: flex;
+    align-items: center; /* Centra los iconos verticalmente */
+    justify-content: center; /* Centra los iconos horizontalmente */
+    width: 35px; /* Ajusta el ancho según sea necesario */
+    height: 35px; /* Ajusta la altura según sea necesario */
+    margin: -2px 0; /* Reduce el margen para juntar más los iconos */
+    background: transparent; /* Fondo transparente */
+    text-decoration: none;
+    position: relative;
+    transition: color 0.3s, transform 0.3s ease;
+    cursor: pointer; /* Cambiar el cursor al pasar sobre los iconos */
+  }
+  
+  .sidebar-nav .sidebar-link img.sidebar-icon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Efecto de iluminación */
+  }
+  
+  /* Mantener el efecto hover */
+  .sidebar-nav .sidebar-link:hover img.sidebar-icon {
+    transform: scale(1.2);
+    filter: brightness(100); /* Efecto de iluminación */
+  }
+  
+  .sidebar-nav .sidebar-link.active {
+    color: #fff; /* Cambia el color del icono a blanco brillante */
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  .sidebar-nav .sidebar-link.active img.sidebar-icon {
+    filter: brightness(100); /* Ajusta la luminosidad del icono cuando esté activo */
+  }
+  
+/* Estilo para los botones de navegación dentro del panel lateral */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Alinea los iconos horizontalmente en el centro */
+    justify-content: center; /* Centra verticalmente los iconos */
+    flex-grow: 1; /* Permite que el área de los iconos ocupe el espacio disponible */
+    width: 100%; /* Asegura que la navegación ocupe el ancho completo del sidebar */
+}
+
+/* Enlaces dentro del panel lateral */
+.sidebar-nav a {
+    display: flex;
+    align-items: center; /* Centra los iconos verticalmente */
+    justify-content: center; /* Centra los iconos horizontalmente */
+    width: 35px; /* Ajusta el ancho según sea necesario */
+    height: 35px; /* Ajusta la altura según sea necesario */
+    margin: -2px 0; /* Reduce el margen para juntar más los iconos */
+    background: transparent; /* Fondo transparente */
+    color: #412624; /* Color de los iconos */
+    text-decoration: none;
+    position: relative; /* Para posicionar la caja de tooltip */
+    transition: color 0.3s;
+}
+
+/* Iconos de navegación */
+.sidebar-nav a img.sidebar-icon {
+    width: 35px;
+    height: 35px;
+    transition: transform 0.3s ease, filter 0.3s ease; /* Efecto de iluminación */
+}
+
+/* Efecto de hover en el icono */
+.sidebar-nav a:hover img.sidebar-icon {
+    transform: scale(1.2); /* Agranda el icono */
+    filter: brightness(1.5); /* Efecto de iluminación */
+}
+
+
+/* Tooltip personalizado */
+.sidebar-nav a[data-tooltip]:hover::after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: -100px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    font-size: 14px;
+    z-index: 1002;
+}
+
+/* Cambiar el color del icono al pasar el ratón */
+.sidebar-nav a img.sidebar:hover {
+    color: #FFFFFF; /* Color blanco brillante para el hover */
+}
+
+/* Caja de tooltip */
+.sidebar-nav a[data-tooltip]:hover:after {
+    content: attr(data-tooltip);
+    position: absolute;
+    left: -220%; /* Alinea el tooltip al borde del sidebar */
+    top: 50%;
+    transform: translateY(-50%); /* Centra el tooltip verticalmente */
+    width: 50px; /* Tamaño fijo para todos los tooltips */
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    white-space: nowrap;
+    text-align: center; /* Centra el texto dentro del tooltip */
+    font-size: 14px;
+    z-index: 1002;
+    transition: opacity 0.3s ease;
+}
+
+  .sidebar-nav a[data-tooltip]:hover:before {
+    content: '';
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent rgba(0, 0, 0, 0.7) transparent transparent;
+  }
+
+/* Mostrar la caja de tooltip al pasar el ratón */
+.sidebar-nav a:hover::after {
+    opacity: 1;
+    visibility: visible;
+}
+
+
+/* Flechas de desplazamiento en la parte superior e inferior */
+.sidebar-arrow {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #847865;
+    color: #402825;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 3px solid #412624;
+    z-index: 1001;
+    transition: transform 0.3s ease, height 0.3s ease, background-color 0.3s ease, color 0.3s ease;
+    box-sizing: border-box;
+}
+
+/* Flecha superior */
+.sidebar-arrow.top {
+    top: -20px;
+    transform-origin: top; /* Estiramiento hacia afuera desde la parte superior */
+}
+
+/* Flecha inferior */
+.sidebar-arrow.bottom {
+    bottom: -20px;
+    transform-origin: bottom; /* Estiramiento hacia afuera desde la parte inferior */
+}
+
+/* Iconos de flecha */
+.sidebar-arrow .fa-icon {
+    font-size: 16px;
+    color: #402825;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+/* Botón superior */
+.sidebar-arrow.top:hover {
+    height: 30px; /* Estira hacia arriba desde la parte interna (inferior) */
+    transform: translateY(-10px); /* Acompaña el movimiento hacia arriba */
+}
+
+/* Botón inferior */
+.sidebar-arrow.bottom:hover {
+    height: 30px; /* Estira hacia abajo desde la parte interna (superior) */
+    transform: translateY(10px); /* Acompaña el movimiento hacia abajo */
+}
+
+/* Cambiar color del icono al hover sin aumentar el tamaño */
+.sidebar-arrow.top:hover .fa-icon,
+.sidebar-arrow.bottom:hover .fa-icon {
+    color: #FFFFFF; /* Cambia color en hover */
+    transform: none; /* Mantiene el tamaño del icono sin alterarlo */
+}
+
+/* Estado cuando no se puede mover más (superior) */
+.sidebar-arrow.top.disabled,
+.sidebar-arrow.bottom.disabled {
+    background: rgba(132, 120, 101, 0.5); /* Fondo con 50% de transparencia */
+    color: rgba(64, 40, 37, 0.5); /* Color de icono con 50% de transparencia */
+    cursor: not-allowed; /* Cursor de no permitido */
+}
+
+/* Estado cuando no se puede mover más (inferior) */
+.sidebar-arrow.bottom.disabled {
+    background: rgba(132, 120, 101, 0.5); /* Fondo con 50% de transparencia */
+    color: rgba(64, 40, 37, 0.5); /* Color de icono con 50% de transparencia */
+    cursor: not-allowed; /* Cursor de no permitido */
+}
+/* Flechas deshabilitadas (transparente) */
+.sidebar-arrow.disabled {
+    opacity: 0.5; /* 50% transparente cuando no se puede mover más */
+}
+
+.sidebar-nav a.active {
+    color: #fff; /* Cambia el color del icono a blanco brillante */
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+
+  .sidebar-nav a.active img.sidebar-icon {
+    filter: brightness(10); /* Ajusta la luminosidad del icono cuando esté activo */
+  }
+
+/* Efecto de iluminación brillante en los iconos al hacer hover */
+.sidebar-nav a:hover img.sidebar-icon {
+    filter: brightness(100) ; /* Incrementa el brillo y añade un resplandor blanco */
+    transform: scale(1.2); /* Aumenta ligeramente el tamaño del icono */    
+}

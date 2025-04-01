@@ -1,0 +1,335 @@
+/* =================== src/styles/HeroSection.css =================== */
+
+/* Variables globales para tamaño de fuente */
+:root {
+  --font-size-large: clamp(2rem, 2vw + 1rem, 3rem);
+  --font-size-medium: clamp(1.5rem, 1.5vw + 0.5rem, 2rem);
+  --font-size-small: clamp(1rem, 1vw + 0.2rem, 1.2rem);
+}
+
+/* Contenedor de la sección de Hero */
+.hero-background {
+  width: 100vw; /* Ancho total del viewport */
+  height: 100vh; /* Altura total del viewport */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative; /* Contenedor padre para el fondo y el GIF */
+}
+
+/* Contenedor que agrupa el fondo y el GIF */
+.background-container {
+  position: relative;
+  width: 100%; /* Ancho completo */
+  height: 100%; /* Altura completa */
+  overflow: hidden; /* Ocultar cualquier elemento desbordado */
+}
+
+/* Imagen de fondo */
+.background-image {
+  width: 100%; /* Ocupa todo el ancho del contenedor */
+  height: 100%; /* Ocupa toda la altura */
+  object-fit: cover; /* Cubre todo el contenedor manteniendo proporciones */
+  position: absolute; /* Posición fija dentro del contenedor */
+  top: 0;
+  left: 0;
+  z-index: 1; /* Fondo */
+  opacity: 0.9;
+}
+
+/* Imagen de la espada animada, completamente anclada al background */
+.flan-espada {
+  position: absolute;
+  width: 25%; /* Tamaño relativo al contenedor padre en porcentaje */
+  height: auto;
+  top: 55%; /* Proporción inicial de la posición vertical */
+  left: 65%; /* Proporción inicial de la posición horizontal */
+  transform: translate(-50%, -50%); /* Centramos la imagen según sus valores de top y left */
+  z-index: 2; /* Justo encima del fondo */
+  pointer-events: none; /* Evitar interacción */
+  transition: width 0.3s ease, top 0.3s ease, left 0.3s ease; /* Transiciones suaves */
+}
+
+/* =================== Responsive Design =================== */
+
+/* Pantallas grandes (1440px o mayores) */
+@media (min-width: 1440px) {
+  .flan-espada {
+    top: 55%; /* Mantener la proporción vertical */
+    left: 65%; /* Mantener la proporción horizontal */
+    width: 25%; /* Ajuste de tamaño adecuado para pantallas grandes */
+  }
+}
+
+/* Pantallas medianas (1024px) */
+@media (max-width: 1024px) {
+  .flan-espada {
+    top: 55%; /* Ajuste vertical */
+    left: 67%; /* Ajuste horizontal */
+    width: 30%; /* Tamaño más grande en pantallas medianas */
+  }
+}
+
+/* Pantallas pequeñas (768px) */
+@media (max-width: 768px) {
+  .flan-espada {
+    top: 58%; /* Ajuste vertical */
+    left: 70%; /* Ajuste horizontal */
+    width: 30%; /* Tamaño ajustado */
+  }
+}
+
+@media (max-width: 1024px) and (min-height: 1366px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 45%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 820px) and (min-height: 1180px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 45%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 768px) and (min-height: 1024px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 45%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+/* Pantallas muy pequeñas (480px) */
+@media (max-width: 480px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 70%; /* Ajuste horizontal */
+    width: 40%; /* Tamaño ajustado */
+  }
+}
+
+/* Pantallas ultra pequeñas (375px) */
+@media (max-width: 375px) {
+  .flan-espada {
+    top: 65%; /* Ajuste vertical */
+    left: 75%; /* Ajuste horizontal */
+    width: 45%; /* Tamaño ajustado */
+  }
+}
+
+@media (max-width: 540px) and (min-height: 720px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 45%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+/* Ajustes específicos para pantallas altas y estrechas (500x900) */
+@media (max-width: 500px) and (min-height: 800px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 50%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 375px) and (min-height: 667px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 80%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 50%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 344px) and (min-height: 882px) {
+  .flan-espada {
+    top: 62%; /* Ajuste vertical */
+    left: 95%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 55%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 414px) and (min-height: 896px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 90%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 60%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+@media (max-width: 430px) and (min-height: 932px) {
+  .flan-espada {
+    top: 60%; /* Ajuste vertical */
+    left: 90%; /* Mantener un ajuste proporcional para pantallas largas */
+    width: 60%; /* Tamaño más grande para pantallas más altas */
+  }
+}
+
+/* Ajustes específicos para pantallas ultra pequeñas (max 210px) */
+@media (max-width: 210px) {
+  .flan-espada {
+    top: 65%; /* Ajuste vertical */
+    left: 80%; /* Ajuste horizontal */
+    width: 50%; /* Ajustar el tamaño para mantener la proporción */
+  }
+}
+/* Contenedor principal que agrupa el logo y la sección de información */
+.logo-and-info-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start; /* Asegura que el logo esté más arriba */
+  position: absolute;
+  top: 15%; /* Posición inicial del logo */
+  left: 50%;
+  transform: translate(-50%, -10%);
+  width: clamp(300px, 18vw + 10%, 690px); /* Ancho adaptable */
+  z-index: 3;
+}
+
+/* Logo principal */
+.hero-logo {
+  width: clamp(172px, 17vw + 15%, 350px); /* Reescalado con un 15% más grande */
+  height: auto;
+  margin-bottom: 3vh; /* Ajuste de separación inferior */
+}
+
+/* Cuadro de información */
+.text-container {
+  text-align: center;
+  width: 100%;
+  max-width: 690px;
+  margin-top: 0vh; /* Ajuste para asegurar la separación sin que se toquen */
+  background: transparent;
+}
+
+/* Títulos y subtítulos */
+.server-title {
+  font-size: clamp(1.2rem, 2.5vw, 2.2rem);
+  font-weight: bold;
+  color: #FFE071;
+  margin-bottom: 1vh;
+  text-shadow: 0 4px 6px rgba(0, 0, 0, 0.6);
+  animation: titleGlow 2.5s ease-in-out infinite;
+}
+@keyframes titleGlow {
+  0% { text-shadow: 0 0 6px rgba(255, 224, 113, 0.5); }
+  50% { text-shadow: 0 0 12px rgba(255, 224, 113, 1); }
+  100% { text-shadow: 0 0 6px rgba(255, 224, 113, 0.5); }
+}
+.server-subtitle {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.8rem, 1.5vw, 1.5rem);
+  font-weight: 400;
+  color: #B9EFFD;
+  margin-bottom: 2vh;
+  line-height: 1.4;
+}
+
+/* Línea decorativa */
+.decorative-line-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2vh auto;
+  width: 90%;
+}
+
+.decorative-line {
+  height: 2px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0) 100%);
+}
+
+.decorative-line.left,
+.decorative-line.right {
+  width: 40%;
+}
+
+.decorative-point {
+  width: 10px;
+  height: 10px;
+  background-color: #777777;
+  border-radius: 50%;
+  margin: 0 10px;
+}
+
+/* Información del servidor */
+.server-info {
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(0.8rem, 1.2vw, 1.2rem);
+  color: #dddddd;
+  margin: 2vh 0 1vh 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 30px;
+  transition: background 0.3s ease;
+}
+.server-info span {
+  font-weight: bold;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+}
+/* Indicador de estado del servidor */
+.server-status-indicator {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  margin-left: 10px;
+  background-color: #ff4d4d;
+  transition: background-color 0.5s ease;
+  
+}
+
+.server-info.online .server-status-indicator {
+  background-color: #6ef566;
+}
+
+.server-info.offline .server-status-indicator {
+  background-color: #ff4d4d;
+}
+
+/* Botón de "Comienza a jugar" */
+.play-button {
+  background: #FFE071;
+  border: 2px solid #422725;
+  color: #422725;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  padding: 1.2vh 2vw;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  font-size: clamp(0.9rem, 1.2vw, 1rem);
+  
+}
+
+.play-button:hover {
+  background: #FFE071;
+  color: #422725;
+  transform: scale(1.05);
+  box-shadow: 0 0 10px 4px #ffffff;
+  border-color: #ffffff;
+}
+
+.play-button.copied {
+  background-color: #444;
+  color: #fff;
+  box-shadow: 0 0 8px #fff;
+}
+/* Información del ATH */
+.ath-info {
+  margin-left: 10px;
+  font-weight: italic;
+  color: #ffffff;
+  opacity: 0.8;
+}

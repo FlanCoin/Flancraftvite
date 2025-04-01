@@ -1,0 +1,55 @@
+/* Fondo del loading */
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%; /* Cambiado a 100% para asegurarte de que ocupa todo el viewport */
+  height: 100%; /* Cambiado a 100% para asegurarte de que ocupa todo el viewport */
+  background: #1f1b2e; /* Fondo oscuro */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999; /* Asegura que esté encima de todos los demás elementos */
+  transition: opacity 0.5s ease-in-out;
+  overflow: hidden; /* Evita scroll en la sección de carga */
+  touch-action: none; /* Desactiva el scroll en dispositivos táctiles */
+}
+
+/* Clase para desactivar el scroll en la página */
+body.loading-active {
+  overflow: hidden;
+  height: 100vh;
+  touch-action: none;
+}
+
+/* Contenedor del contenido del loading */
+.loading-content {
+  text-align: center;
+  color: #ffd700;
+  padding: 20px; /* Añadido para asegurar que el contenido no toque los bordes en móviles */
+}
+
+/* Imagen de carga */
+.loading-image {
+  max-width: 80%; /* Cambiado a 80% para que se ajuste en móviles */
+  height: auto; /* Mantiene la proporción */
+  margin-bottom: 20px;
+}
+
+/* Texto del loading */
+.loading-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 24px; /* Puedes ajustar este tamaño para que sea más pequeño en móviles */
+  color: #7dcbea;
+}
+
+/* Media query para dispositivos móviles */
+@media (max-width: 768px) {
+  .loading-text {
+      font-size: 18px; /* Tamaño del texto más pequeño en móviles */
+  }
+
+  .loading-image {
+      width: 150px; /* Tamaño de la imagen más pequeño en móviles */
+  }
+}

@@ -1,0 +1,181 @@
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+/* ============ Estilos del Navbar Principal (Escritorio) ============ */
+.desktop-navbar {
+  position: relative;
+  justify-content: space-between;
+  background-color: #B9AB83;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px 0;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+  border-bottom: 4px solid #412624;
+}
+
+.desktop-navbar::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 9px;
+  background: 
+    linear-gradient(to bottom, #8B785B, #8B785B) 0 0 / 100% 2px,
+    linear-gradient(to bottom, #412624, #412624) 0 2px / 100% 1px,
+    linear-gradient(to bottom, #8B785B, #8B785B) 0 3px / 100% 2px,
+    linear-gradient(to bottom, #412624, #412624) 0 5px / 100% 1px;
+}
+
+.desktop-navbar-socials {
+  position: absolute;
+  left: 20px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  z-index: 101;
+}
+
+.desktop-navbar-socials a {
+  color: #8B7868;
+  font-size: 22px;
+  transition: color 0.3s ease;
+}
+
+.desktop-navbar-socials a:hover {
+  color: white;
+}
+
+/* Links del Navbar Principal */
+.desktop-navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  flex-wrap: wrap;
+}
+
+.desktop-navbar-link {
+  text-decoration: none;
+  color: #412624;
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  padding: 6px 18px;
+  background-color: #897664;
+  border: 2px solid #412624;
+  box-shadow: inset 0 0 0px #000, 3px 3px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(255, 255, 255, 0.1);
+  transition: background-color 0.3s, color 0.3s, transform 0.3s, box-shadow 0.3s, border 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Espacio entre icono y texto */
+  font-size: 20px;
+}
+
+.desktop-navbar-link:hover {
+  background-color: #725B4E;
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Botón específico para Store */
+.desktop-store-button {
+  background: linear-gradient(45deg, #FFE071 25%, #FFD65A 25%, #FFD65A 50%, #FFE071 50%, #FFE071 75%, #FFD65A 75%, #FFD65A);
+  background-size: 20px 20px;
+  color: #412624;
+  font-size: 20px;
+  padding: 6px 18px;
+  border: 2px solid #412624;
+}
+
+/* Estilo de botón activo para los enlaces de Flanium y Whitepaper */
+.desktop-flanium-button.active,
+.desktop-flanium-button.active:hover {
+  color: white;
+}
+
+.flancraft-button {
+  background: linear-gradient(145deg, #aeea84, #8fd46c); /* Verde suave Minecraft */
+  background-size: cover;
+  color: #412623;
+  border: 2px solid #412623;
+  font-size: 20px;
+  padding: 6px 18px;
+  font-family: 'VT323', monospace;
+  box-shadow: inset 0 0 0px #000, 2px 2px 4px rgba(0, 0, 0, 0.3), -2px -2px 4px rgba(255, 255, 255, 0.1);
+  transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+}
+
+.flancraft-button:hover {
+  background: linear-gradient(145deg, #7bcf56, #69b24a); /* Verde más intenso */
+  color: white;
+  transform: scale(1.05);
+}
+
+/* Animación de shake */
+@keyframes shake {
+  0% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  50% { transform: translateX(5px); }
+  75% { transform: translateX(-5px); }
+  100% { transform: translateX(0); }
+}
+
+.shake {
+  animation: shake 0.5s ease;
+}
+
+/* Enlace bloqueado */
+.desktop-navbar-link.locked {
+  cursor: not-allowed;
+  color: #999;
+}
+
+/* Estilos Responsive */
+@media (max-width: 1282px) {
+  .desktop-navbar {
+    display: none; /* Ocultar el navbar de escritorio en pantallas pequeñas */
+  }
+
+  .mobile-menu-button {
+    display: block; /* Mostrar el botón de menú en pantallas pequeñas */
+  }
+
+  .mobile-navbar-container {
+    display: flex; /* Mostrar el navbar lateral solo en móvil */
+  }
+}
+
+@media (max-width: 768px) {
+  .mobile-menu-button {
+    font-size: 14px;
+    padding: 8px 16px;
+    left: 10px;
+    top: 10px;
+  }
+
+  .mobile-navbar-container {
+    width: 250px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mobile-menu-button {
+    font-size: 12px;
+    padding: 6px 14px;
+  }
+
+  .mobile-navbar-container {
+    width: 220px;
+  }
+}
+.desktop-navbar-link {
+  padding: 10px 20px; /* Esto es lo que tienes, está bien */
+  min-width: 130px;  /* Fuerza ancho mínimo igual para todos */
+  text-align: center;
+  justify-content: center;
+}

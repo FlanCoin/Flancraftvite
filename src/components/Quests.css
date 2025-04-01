@@ -1,0 +1,207 @@
+/* Importación de la nueva fuente */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=PT+Serif:wght@700&display=swap');
+
+/* Estructura base */
+.quests-section {
+  position: relative;
+  width: 100vw;
+  min-height: 100vh;
+  background: url('/src/assets/questback.webp') no-repeat center center;
+  background-size: cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: #f2f2f2;
+  font-family: 'Raleway', sans-serif;
+  padding: 5vh 2vw;
+  box-sizing: border-box;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Título Principal */
+.quests-title {
+  font-family: 'PT Serif', serif;
+  font-size: 6vh;
+  font-weight: 900;
+  color: #FFD700;
+  margin-bottom: 3vh;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-align: center;
+  text-shadow: 0 0 10px #000000, 0 0 15px #FFD700;
+  animation: titleGlow 4s ease-in-out infinite alternate, titleFadeIn 1.5s ease-out 0.5s both;
+}
+
+/* Descripción */
+.quests-description {
+  font-size: 2.2vh;
+  line-height: 1.7;
+  max-width: 850px;
+  text-align: center;
+  margin: 0 auto 4vh auto;
+  color: #E0E2DB;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 2vh 3vw;
+  border-radius: 10px;
+}
+
+/* Estructura de las Cartas */
+.quests-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 3vh;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Cartas de Quest */
+.quest-card {
+  background: rgba(0, 0, 0, 0.85);
+  padding: 3vh 2vw;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: #fff;
+  text-align: center;
+  width: 30%;
+  margin: 1vh 0;
+  position: relative;
+}
+
+/* Efecto hover */
+.quest-card:hover {
+  transform: translateY(-1vh) scale(1.05);
+  box-shadow: 0 8px 30px rgba(255, 255, 255, 0.5);
+}
+
+/* Separador en las Cartas */
+.quest-card hr {
+  width: 60%;
+  height: 3px;
+  border: none;
+  margin: 2vh auto;
+  background: linear-gradient(to right, #FFD700, #FFA500, #FFD700);
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 15px rgba(255, 165, 0, 0.5);
+  position: relative;
+}
+
+.quest-card hr:before,
+.quest-card hr:after {
+  content: '';
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #FFD700;
+  top: 50%;
+  transform: translateY(-50%);
+  box-shadow: 0 0 8px rgba(255, 215, 0, 0.8);
+}
+
+.quest-card hr:before {
+  left: -15px;
+}
+
+.quest-card hr:after {
+  right: -15px;
+}
+
+/* Título dentro de las cartas */
+.quest-card h3 {
+  font-size: 3vh;
+  font-weight: 800;
+  margin: 0;
+  color: #FFD700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  text-shadow: 0 0 12px rgba(255, 215, 0, 0.8);
+}
+
+/* Texto dentro de las cartas */
+.quest-card p {
+  font-size: 1.8vh;
+  margin: 1vh 0;
+  line-height: 1.5;
+  color: #E5E5E5;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.4);
+}
+
+/* Estilo de cada carta */
+.daily-quests {
+  background: linear-gradient(135deg, rgba(45, 45, 60, 0.95), rgba(85, 85, 90, 0.85));
+}
+
+.weekly-quests {
+  background: linear-gradient(135deg, rgba(27, 177, 77, 0.95), rgba(35, 168, 101, 0.85));
+}
+
+.special-challenges {
+  background: linear-gradient(135deg, rgba(53, 133, 199, 0.95), rgba(50, 180, 150, 0.85));
+}
+
+/* Media Queries para pantallas pequeñas */
+@media (max-width: 768px) {
+  .quests-title {
+    font-size: 4vh;
+  }
+
+  .quests-description {
+    font-size: 1.8vh;
+  }
+
+  .quests-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2vh; /* Menos espacio entre cartas */
+  }
+
+  .quest-card {
+    width: 85%;
+    margin: 1.5vh auto; /* Ajuste de márgenes para más compactación */
+    padding: 2.5vh 2vw; /* Reducir padding interno */
+  }
+}
+
+/* Media Queries para dispositivos móviles en vertical */
+@media (max-width: 480px) {
+  .quests-title {
+    font-size: 3.5vh;
+  }
+
+  .quests-description {
+    font-size: 1.6vh;
+    padding: 2vh 2.5vw; /* Ajuste de padding para reducir espacios */
+  }
+
+  .quests-grid {
+    gap: 1.5vh; /* Compactar más los elementos */
+  }
+
+  .quest-card {
+    width: 90%;
+    margin: 1vh auto; /* Centrar las cartas y compactar aún más */
+    padding: 2vh 1.5vw; /* Reducir aún más el padding interno */
+  }
+
+  .quest-card h3 {
+    font-size: 2.5vh; /* Ajustar el tamaño del título */
+  }
+
+  .quest-card p {
+    font-size: 1.5vh;
+  }
+}
+
+/* Media Queries para pantallas grandes */
+@media (min-width: 1440px) {
+  .quests-title {
+    font-size: 7vh;
+  }
+
+  .quests-description {
+    font-size: 2.5vh;
+  }
+}

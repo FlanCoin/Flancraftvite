@@ -1,0 +1,210 @@
+/* Importación de la nueva fuente */
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@700&family=PT+Serif:wght@700&display=swap');
+
+/* Estilo base para la sección Play */
+.play-section {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden; /* Evita el desbordamiento del contenido */
+}
+
+/* Imagen de fondo */
+.play-image-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+}
+
+.play-image {
+  background-size: cover; /* Ajustar para cubrir todo el contenedor */
+  background-repeat: no-repeat; /* No repetir el fondo */
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Contenido de la sección */
+.play-content {
+  position: relative;
+  width: 90%; /* Reducimos el ancho para mantener el contenido dentro del GIF */
+  max-width: 600px;
+  padding: 20px; /* Aumentamos el padding para mejorar el espaciado */
+  text-align: left;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.8); /* Fondo semi-transparente */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  margin-bottom: 0;
+  margin-left: -40%; /* Desplaza el contenido hacia la izquierda en pantallas grandes */
+}
+
+/* Imagen de tierra añadida al fondo del contenedor */
+.play-tierra-image {
+  width: 100%; /* Ajusta el tamaño al 100% del contenedor */
+  height: auto;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5); /* Añade sombra para el efecto visual */
+  border-radius: 8px; /* Esquinas redondeadas */
+  margin-top: 10px;
+}
+
+/* Estilo del título */
+.play-main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #FDBB47;
+  margin-bottom: 15px;
+  line-height: 1;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.7), 0 0 15px rgba(255, 183, 77, 0.5);
+  text-align: left;
+}
+
+/* Estilo del texto descriptivo */
+.play-main-description {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  line-height: 1.6;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+
+/* Estilo del botón */
+.play-main-button {
+  display: inline-block;
+  padding: 2px 82px;
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-image: url('../assets/botonjoin.png');
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  position: absolute;
+  bottom: 70px; /* Ajustado para que mantenga relación con la imagen */
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efecto hover en el botón */
+.play-main-button:hover {
+  transform: translateX(-50%) scale(1.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Animación del borde */
+@keyframes border-blink {
+  0%, 100% {
+    border-color: #ffffff;
+  }
+  50% {
+    border-color: #0f0f0f;
+  }
+}
+
+.play-main-button {
+  border: 2px solid #ffffff;
+  animation: border-blink 2.5s infinite;
+}
+
+/* Media Queries */
+
+/* Ajustes en pantallas medianas */
+@media (max-width: 1024px) {
+  .play-content {
+    width: 85%;
+    padding: 15px;
+    margin-left: -30%; /* Ajustar desplazamiento lateral */
+  }
+
+  .play-main-title {
+    font-size: 2rem;
+    text-align: center;
+  }
+
+  .play-main-description {
+    font-size: 1.1rem;
+    text-align: center;
+  }
+
+  .play-tierra-image {
+    width: 90%;
+    max-width: 400px;
+  }
+
+  .play-main-button {
+    padding: 2px 60px;
+    font-size: 1rem;
+  }
+}
+
+/* Ajustes en dispositivos móviles */
+@media (max-width: 768px) {
+  .play-content {
+    width: 100%;
+    padding: 15px;
+    margin-left: 0; /* Eliminar desplazamiento */
+    text-align: center; /* Centrar contenido */
+  }
+
+  .play-main-title {
+    font-size: 1.8rem;
+    text-align: center;
+  }
+
+  .play-main-description {
+    font-size: 1rem;
+    text-align: center;
+  }
+
+  .play-tierra-image {
+    width: 80%;
+    max-width: 350px;
+  }
+
+  .play-main-button {
+    bottom: 10px;
+    padding: 2px 50px;
+    font-size: 0.9rem;
+  }
+}
+
+/* Ajustes en dispositivos móviles pequeños */
+@media (max-width: 480px) {
+  .play-content {
+    width: 100%;
+    padding: 10px;
+    margin-left: 0;
+  }
+
+  .play-main-title {
+    font-size: 1.6rem;
+  }
+
+  .play-main-description {
+    font-size: 0.9rem;
+  }
+
+  .play-tierra-image {
+    width: 70%;
+    max-width: 280px;
+  }
+
+  .play-main-button {
+    bottom: 30px;
+    padding: 0px 40px;
+    font-size: 1.2rem;
+  }
+}

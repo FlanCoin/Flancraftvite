@@ -1,0 +1,473 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+/* Contenedor principal de la página de noticias */
+.newsPage-page {
+    background: url('../../assets/newsback.webp') repeat;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    box-shadow: 0 5px 0 0 #8B785B inset, 0 9px 0 0 #675545 inset;
+}
+
+/* Bordes decorativos */
+.newsPage-page::before,
+.newsPage-page::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    height: 130%;
+    width: 15vw;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: 10;
+}
+
+.newsPage-page::before {
+    left: 0%;
+    background-image: url('../../assets/posterleft.webp');
+}
+
+.newsPage-page::after {
+    right: 0%;
+    background-image: url('../../assets/posterright.webp');
+}
+
+/* Botón de regreso */
+.newsPage-back-button {
+    background-color: #EAD7C5;
+    color: #333333;
+    border: none;
+    padding: 10px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 6px;
+    cursor: pointer;
+    position: absolute;
+    top: 80px;
+    left: 40px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s;
+    z-index: 15;
+}
+
+.newsPage-back-button:hover {
+    background-color: #D1B7A5;
+}
+
+/* Contenedor de la noticia */
+.newsPage-wrapper {
+    background-color: #e6e2d6;
+    padding: 100px 150px; /* Mantén el padding original */
+    width: 100%;
+    max-width: 1300px; /* Limita el ancho máximo para que no ocupe toda la pantalla */
+    margin: 0 auto; /* Centra el contenedor */
+    overflow-y: auto;
+    box-sizing: border-box;
+    border-top: none;
+    border-left: 2px solid #523930;
+    border-right: 2px solid #523930;
+    border-bottom: none;   
+    box-shadow: 
+      inset 1px 0 0 0 #8B785B,
+      inset -5px 0 0 0 #8B785B,
+      inset 10px 0 0 0 #675545,
+      inset -10px 0 0 0 #675545;
+    border-radius: 0;
+    z-index: 11;
+    overflow-x: hidden;
+}
+
+/* Contenedor interno de toda la noticia */
+.newsPage-inner-wrapper {
+    background-color: #e6ddc9;
+    padding: 20px; /* Mantén un padding interno razonable */
+    width: 120%; /* Aumenta el ancho para que ocupe casi todo el espacio del wrapper */
+    margin-left: -10%; /* Ajusta el margen izquierdo para centrar el elemento */
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border: 2px solid #d1c4b0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Fecha de la noticia */
+.newsPage-date {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+}
+
+/* Contenido de la noticia */
+.newsPage-content p {
+    margin-bottom: 1.2em;
+}
+
+.newsPage-content h1,
+.newsPage-content h2,
+.newsPage-content h3 {
+    color: #333333;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    margin: 1em 0 0.5em;
+    letter-spacing: 0.5px;
+}
+
+.newsPage-content ul,
+.newsPage-content ol {
+    margin-left: 20px;
+}
+
+.newsPage-content li {
+    margin-bottom: 0.6em;
+}
+
+/* Imagen de la noticia */
+.newsPage-image {
+    width: 100%;
+    max-width: 1000px;
+    height: auto;
+    border-radius: 8px;
+    margin: 20px 0;
+    object-fit: contain;
+}
+
+/* Título de la noticia */
+.newsPage-title {
+    font-size: 1.8rem;
+    color: #2C2C2C;
+    font-family: 'Georgia', serif;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0px;
+}
+
+/* Contenido principal */
+.newsPage-content-container {
+    font-size: 1.1em;
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto; /* Centra el contenedor */
+    line-height: 1.7;
+    color: #4C4C4C;
+    font-family: 'Verdana', sans-serif;
+    background: #FAFAF5;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.05);
+    border: 1px solid #D1C4B0;
+    text-align: justify;
+    white-space: pre-wrap;
+}
+
+/* Contenedor del icono de compartir */
+.newsPage-share-container {
+    position: relative;
+}
+
+.newsPage-share-icon {
+    font-size: 1rem;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.newsPage-share-icon:hover {
+    color: #333;
+}
+
+/* Menú desplegable de compartir */
+.newsPage-share-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 180px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.newsPage-share-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.newsPage-share-menu a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.newsPage-share-menu a:hover {
+    color: #000;
+}
+
+.newsPage-share-menu a svg {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Iconos específicos para el botón de compartir */
+.newsPage-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px;
+    width: 97%;
+    background-color: #f4f2ed; /* Fondo suave */
+    border-bottom: 2px solid #d1c4b0;
+    border-radius: 8px 8px 0 0; /* Bordes redondeados superiores */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Sombra para destacar */
+
+  }
+  
+  .newsPage-date {
+    font-size: 1rem;
+    color: #777;
+    font-style: italic;
+    font-family: 'Arial', sans-serif;
+    font-weight: 400;
+  }
+  
+  .newsPage-share-container {
+    position: relative;
+}
+
+.newsPage-share-icon {
+    font-size: 1.5rem;
+    color: #777;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.newsPage-share-icon:hover {
+    color: #333;
+}
+
+.newsPage-share-menu {
+    position: absolute;
+    top: 30px;
+    right: 0;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    width: 220px; /* Ajustado para acomodar el contenedor de copiar */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden; /* Evita que el contenido se desborde */
+}
+
+.newsPage-share-title {
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.newsPage-share-menu a {
+    display: flex;
+    align-items: center;
+    color: #333;
+    font-size: 0.9rem;
+    padding: 5px 0;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.newsPage-share-menu a:hover {
+    color: #000;
+}
+
+.newsPage-share-menu a svg {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+/* Contenedor de copiar enlace */
+.newsPage-copy-link-container {
+    display: flex;
+    justify-content: space-between; /* Espacio entre el input y el botón */
+    align-items: center;
+    margin-top: 10px;
+    width: 100%; /* Asegura que el contenedor se ajuste al ancho del menú */
+}
+
+.newsPage-copy-link {
+    font-size: 0.8rem;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    flex: 1; /* Ajusta el ancho del input para que se ajuste dentro del contenedor */
+    margin-right: 5px;
+    white-space: nowrap;
+    overflow: hidden; /* Oculta el desbordamiento de texto */
+    text-overflow: ellipsis; /* Muestra los puntos suspensivos si el texto es demasiado largo */
+}
+
+.newsPage-copy-button {
+    font-size: 0.8rem;
+    padding: 5px 10px;
+    background-color: #523930;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    flex-shrink: 0; /* Evita que el botón se reduzca de tamaño */
+}
+
+.newsPage-copy-button:hover {
+    background-color: #3b2a22; /* Color más oscuro al pasar el cursor */
+}
+/* Estilos para la notificación */
+.newsPage-notification {
+    position: fixed;
+    top: 60px; /* Posición superior */
+    left: 50%; /* Centro horizontal */
+    transform: translateX(-50%); /* Compensa el desplazamiento para centrar */
+    background-color: #523930;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 1001;
+}
+
+.newsPage-notification.show {
+    opacity: 1;
+}
+
+  
+
+@media (max-width: 768px) {
+    .newsPage-wrapper {
+        padding: 0 5%; /* Ajusta el padding lateral */
+        width: 100%; /* Asegura que ocupe todo el ancho */
+        margin: 0 auto; /* Centra el contenedor */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-inner-wrapper {
+        width: 100%; /* Usa todo el ancho disponible */
+        margin: 0 auto; /* Centra el contenedor */
+        padding: 10px; /* Espacio alrededor */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+        overflow-x: hidden; /* Evita desbordamientos horizontales */
+    }
+
+    .newsPage-header {
+        display: flex;
+        justify-content: space-between; /* Alinea los elementos a los lados */
+        align-items: center; /* Centra verticalmente */
+        padding: 5px 10px; /* Reduce el padding */
+        border-bottom: 1px solid #d1c4b0; /* Línea decorativa */
+        background-color: #f9f9f9; /* Color de fondo */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-date {
+        font-size: 0.9rem; /* Tamaño de la fuente */
+        color: #333;
+        margin: 0;
+        flex: 1; /* Permite que la fecha ocupe espacio */
+        text-align: center; /* Centra la fecha */
+    }
+
+    .newsPage-share-container {
+        display: flex;
+        align-items: center; /* Centra verticalmente */
+        justify-content: flex-end; /* Posiciona a la derecha */
+        margin-left: auto; /* Empuja el contenedor a la derecha */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-title {
+        text-align: center; /* Centra el título */
+        font-size: 1.4rem; /* Tamaño adecuado de fuente */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-content-container {
+        padding: 10px; /* Ajusta el padding */
+        word-wrap: break-word; /* Evita desbordamientos */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-content {
+        font-size: 1rem; /* Ajusta el tamaño de la fuente */
+        line-height: 1.6; /* Mejora la legibilidad */
+        text-align: justify; /* Justifica el texto */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-image {
+        max-height: 180px; /* Altura máxima de la imagen */
+        width: 100%; /* Ocupa todo el ancho */
+        object-fit: cover; /* Ajusta la imagen */
+        margin-bottom: 15px; /* Espacio inferior */
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    .newsPage-back-button {
+        display: block;
+        margin: 20px auto 0; /* Centra el botón */
+        padding: 8px 14px; /* Ajusta el padding */
+        font-size: 0.9rem; /* Tamaño de la fuente */
+        background-color: #523930; /* Color de fondo */
+        color: #fff; /* Color del texto */
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+
+    
+    .newsPage-share-menu {
+        width: 55vw; /* Ajusta el ancho para que ocupe todo el espacio disponible */
+        max-width: 400px; /* Limita el ancho máximo en dispositivos móviles */
+        margin: 10px auto; /* Centra el menú */
+        font-size: 0.95rem; /* Tamaño de la fuente */
+        background-color: #f9f9f9; /* Fondo */
+        border: 1px solid #d1c4b0; /* Borde */
+        border-radius: 8px; /* Bordes redondeados */
+        padding: 15px; /* Espaciado interno */
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box; /* Asegura que el padding no afecte el ancho */
+    }
+    .newsPage-share-menu-item {
+        width: 100%; /* Asegura que los elementos dentro del panel ocupen todo el espacio */
+        margin-bottom: 10px; /* Espacio entre elementos */
+        text-align: center; /* Centra el texto */
+    }
+}

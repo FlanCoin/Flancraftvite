@@ -1,0 +1,258 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+/* ================== Estilos del Mobile Navbar (Detallado) ================== */
+.mobile-navbar {
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Reducido el ancho para hacerlo más compacto */
+    height: 100%;
+    width: 200px;
+    background-color: #B9AB83;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    border-right: 4px solid #412624;
+    z-index: 199;
+    padding-top: 10px;
+    gap: 8px;
+    transition: left 0.3s ease;
+    overflow-y: auto;
+  }
+  
+  /* Mostrar Navbar Mobile */
+  .mobile-navbar.show {
+    left: 0;
+  }
+  
+  /* Botón de Menú */
+  .menu-button {
+    position: fixed;
+    display: none;
+    top: 15px;
+    left: 15px;
+    background-color: #897664;
+    color: #412624;
+    border: 2px solid #412624;
+    padding: 4px 8px; /* Tamaño de padding ajustado */
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 300;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  .menu-button:hover {
+    background-color: #725B4E;
+  }
+  
+  /* Overlay del Navbar Mobile */
+  .navbar-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+  }
+  
+  .navbar-overlay.show {
+    display: block;
+  }
+  
+  /* ================== Botones del Navbar Lateral ================== */
+  .mobile-navbar .navbar-link {
+    font-family: 'VT323', monospace;
+    font-size: 21px;
+    padding: 12px 14px;
+    margin: 3px 30px;
+    color: #412624;
+    background-color: #897664;
+    border: 3px solid #412624;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    box-shadow: inset 0 0 0px #000, 3px 3px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+  }
+  
+  
+  .mobile-navbar .navbar-link:hover {
+      background-color: #725B4E;
+      color: white;
+      transform: scale(1.05);
+    }
+  
+  /* Botón de Store (con color especial) */
+  .mobile-store-button {
+      background: linear-gradient(
+        45deg,
+        #FFE071 25%,
+        #FFD65A 25%,
+        #FFD65A 50%,
+        #FFE071 50%,
+        #FFE071 75%,
+        #FFD65A 75%,
+        #FFD65A
+      );
+      background-size: 20px 20px;
+      color: #412624;
+    }
+  
+    /* Estilo para el enlace activo en el Mobile Navbar */
+.mobile-navbar .navbar-link.active,
+.mobile-navbar .navbar-link.active:hover {
+  background-color: #725B4E; /* Fondo oscuro para el estado activo */
+  color: white; /* Letras en blanco */
+
+}
+
+  /* Botón de Flan */
+  .mobile-flancraft-button {
+    background: linear-gradient(145deg, #aeea84, #8fd46c);
+    background-size: cover;
+    color: #412624;
+    border: 3px solid #5e9d47;
+    font-size: 21px;
+    padding: 12px 14px;
+    margin: 3px 30px;
+    font-family: 'VT323', monospace;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    text-align: center;
+    box-shadow: inset 0 0 0px #000, 3px 3px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(255, 255, 255, 0.1);
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .mobile-flancraft-button:hover {
+    background: linear-gradient(145deg, #7bcf56, #69b24a);
+    color: white;
+    transform: scale(1.05);
+  }
+  
+  
+  
+  /* Botón de Marketplace */
+  .mobile-marketplace-button {
+      background-color: #A7EB64 !important;
+      color: #412624;
+      padding: 5px 15px; /* Ajustado el tamaño */
+      border: 3px solid #412624;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      box-shadow: inset 0 0 0px #000, 3px 3px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(255, 255, 255, 0.1);
+    }
+    
+    .mobile-marketplace-button:hover {
+      background-color: #8AEF40;
+    }
+  
+  /* ================== Sección de Redes Sociales ================== */
+  .mobile-navbar-socials {
+    margin: 15px auto 10px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 íconos por fila */
+    gap: 20px 10px;
+    padding: 20px 0;
+    width: 80%;
+    border-top: 3px solid #958866;
+    justify-items: center;
+  }
+  
+  .mobile-navbar-socials a {
+    color: #8B7868;
+    font-size: 30px;
+    transition: color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .mobile-navbar-socials a:hover {
+    color: white;
+  }
+  
+  /* ================== Borde Decorativo Vertical ================== */
+  .mobile-navbar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 6px; /* Ajustar el grosor del borde */
+    border-top: none; /* Sin borde superior */
+    border-left: 2px solid #523930; /* Borde izquierdo oscuro */
+    border-right: 2px solid #523930; /* Borde derecho oscuro */
+    border-bottom: none; /* Sin borde inferior */
+    box-shadow: 
+      inset 1px 0 0 0 #8B785B,    /* Sombra lateral izquierda */
+      inset -5px 0 0 0 #8B785B,   /* Sombra lateral derecha */
+      inset 10px 0 0 0 #675545,   /* Segunda sombra lateral izquierda */
+      inset -10px 0 0 0 #675545;  /* Segunda sombra lateral derecha */
+  }
+/* src/components/MobileNavbar.css */
+
+/* Ajustes generales de estilo para el enlace de Whitepaper debajo de Flanium */
+.whitepaper-link {
+  font-size: 0.85em; /* Tamaño reducido */
+  padding: 4px 16px;
+  margin-left: 50px;
+  color: #725B4E;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.whitepaper-link:hover {
+  color: #412624;
+  transform: scale(1.05);
+}
+
+  /* Ajustes Responsive */
+  @media (max-width: 1282px) {
+      .desktop-navbar {
+        display: none;
+      }
+    
+      .mobile-navbar {
+        display: flex;
+      }
+    
+      .menu-button {
+        display: block;
+      }
+    }
+  
+    @media (max-width: 768px) {
+      .menu-button {
+        font-size: 14px;
+        padding: 8px 16px;
+        left: 10px;
+        top: 10px;
+      }
+    
+      .mobile-navbar {
+        width: 220px;
+      }
+    }
+  
+    @media (max-width: 480px) {
+      .menu-button {
+        font-size: 12px;
+        padding: 6px 14px;
+      }
+    
+      .mobile-navbar {
+        width: 200px;
+      }
+    }
+  

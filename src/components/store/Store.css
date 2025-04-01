@@ -1,0 +1,19 @@
+/* src/components/store/Store.css */
+
+.store-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  padding-top: 70px; /* Ajusta según altura exacta de tu navbar */
+  background-color: #3f2b29;
+}
+
+  
+.store-iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  box-shadow: 0 0 10px rgba(0,0,0,0.15);
+  border-radius: 8px;
+}
