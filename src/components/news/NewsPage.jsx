@@ -1,9 +1,17 @@
-// src/components/news/NewsPage.js
+// src/components/news/NewsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import client from '../../sanityClient';
 import { PortableText } from '@portabletext/react';
-import { FaTelegramPlane, FaFacebook, FaTwitter, FaReddit, FaDiscord, FaShareAlt, FaClipboard } from 'react-icons/fa';
+import {
+  FaTelegramPlane,
+  FaFacebook,
+  FaTwitter,
+  FaReddit,
+  FaDiscord,
+  FaShareAlt,
+  FaClipboard
+} from 'react-icons/fa';
 import './NewsPage.css';
 
 const NewsPage = () => {
@@ -49,9 +57,47 @@ const NewsPage = () => {
   const handleCopyLink = () => {
     navigator.clipboard.writeText(pageUrl);
     setShowNotification(true);
-    setTimeout(() => {
-      setShowNotification(false);
-    }, 3000);
+    setTimeout(() => setShowNotification(false), 3000);
+  };
+
+  const portableTextComponents = {
+    types: {
+      youtube: ({ value }) => {
+        const { url } = value;
+        if (!url) return <p>Video no válido</p>;
+
+        let videoId = null;
+
+        if (url.includes('shorts')) {
+          const match = url.match(/shorts\/([a-zA-Z0-9_-]+)/);
+          videoId = match ? match[1] : null;
+        } else {
+          const match = url.match(/v=([^&]+)/);
+          videoId = match ? match[1] : null;
+        }
+
+        return videoId ? (
+          <div style={{ position: 'relative', paddingBottom: '56.25%', height: 0, margin: '2rem 0' }}>
+            <iframe
+              src={`https://www.youtube.com/embed/${videoId}`}
+              title="YouTube video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              style={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                width: '100%',
+                height: '100%',
+              }}
+            />
+          </div>
+        ) : (
+          <p>Video no válido</p>
+        );
+      }
+    }
   };
 
   return (
@@ -79,11 +125,9 @@ const NewsPage = () => {
                   <a href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(pageUrl)}`} target="_blank" rel="noopener noreferrer">
                     <FaFacebook /> Facebook
                   </a>
-                  <a href={`https://discord.com/channels/@me`} target="_blank" rel="noopener noreferrer">
+                  <a href="https://discord.com/channels/@me" target="_blank" rel="noopener noreferrer">
                     <FaDiscord /> Discord
                   </a>
-
-                  {/* Contenedor de copia de link */}
                   <div className="newsPage-copy-link-container">
                     <input
                       type="text"
@@ -99,6 +143,7 @@ const NewsPage = () => {
               )}
             </div>
           </header>
+
           {imageUrl && (
             <img
               src={imageUrl}
@@ -106,17 +151,19 @@ const NewsPage = () => {
               className="newsPage-image"
             />
           )}
+
           <h1 className="newsPage-title">{title || "Sin título"}</h1>
+
           <div className="newsPage-content-container">
             <div className="newsPage-content">
-              <PortableText value={content || []} />
+              <PortableText value={content || []} components={portableTextComponents} />
             </div>
           </div>
+
           <button className="newsPage-back-button" onClick={() => navigate(-1)}>Atrás</button>
         </div>
       </div>
 
-      {/* Notificación de copia */}
       <div className={`newsPage-notification ${showNotification ? 'show' : ''}`}>
         Link copiado al portapapeles
       </div>

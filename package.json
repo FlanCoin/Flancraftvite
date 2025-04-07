@@ -16,6 +16,7 @@
     "@portabletext/react": "^3.2.1",
     "@sanity/client": "^6.28.4",
     "firebase": "^11.6.0",
+    "flancraft-vite": "file:",
     "framer-motion": "^12.6.2",
     "lightweight-charts": "^4.1.0",
     "plyr": "^3.7.8",

@@ -1,4 +1,4 @@
-// src/components/news/NewsSection.js
+// src/components/news/NewsSection.jsx
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import client from '../../sanityClient';
@@ -33,6 +33,29 @@ const NewsSection = () => {
     const date = new Date(dateString);
     if (isNaN(date.getTime())) return "Sin fecha";
     return date.toLocaleDateString();
+  };
+
+  const getTextExcerpt = (content, length = 300) => {
+    try {
+      if (!Array.isArray(content)) return '...';
+
+      const textBlocks = content.filter(
+        block => block && block._type === 'block' && Array.isArray(block.children)
+      );
+
+      const fullText = textBlocks
+        .map(block =>
+          block.children
+            .map(child => (typeof child.text === 'string' ? child.text : ''))
+            .join('')
+        )
+        .join(' ');
+
+      return fullText.slice(0, length) + '...';
+    } catch (error) {
+      console.error('Error in getTextExcerpt:', error);
+      return '...';
+    }
   };
 
   const indexOfLastNews = currentPage * newsPerPage;
@@ -126,7 +149,7 @@ const NewsSection = () => {
           {currentNews.map((news) => (
             <div key={news._id} className="newsSection-item">
               <div className="newsSection-item-header">
-                <Link 
+                <Link
                   to={`/news/${news._id}`}
                   className="newsSection-item-title-link"
                   title={news.title}
@@ -136,7 +159,7 @@ const NewsSection = () => {
                 <p className="newsSection-item-date">{formatDate(news.date)}</p>
               </div>
               {news.imageUrl && (
-                <Link 
+                <Link
                   to={`/news/${news._id}`}
                   className="newsSection-item-image-link"
                   title="Ver imagen y detalles"
@@ -150,9 +173,9 @@ const NewsSection = () => {
               )}
               <div className="newsSection-item-content">
                 <p className="newsSection-item-excerpt">
-                  {(news.content || []).slice(0, 50).map(block => block.children[0]?.text).join(' ')}...
+                  {getTextExcerpt(news.content)}
                 </p>
-                <Link 
+                <Link
                   to={`/news/${news._id}`}
                   className="newsSection-read-more"
                   title="Continuar leyendo"
@@ -164,7 +187,6 @@ const NewsSection = () => {
           ))}
         </div>
         {renderPagination()}
-        {/* Posters a los lados */}
         <div className="poster-left"></div>
         <div className="poster-right"></div>
       </div>
