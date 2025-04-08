@@ -33,10 +33,13 @@ export default async function handler(req, res) {
       }
     ]);
 
-  if (error) {
-    console.error('❌ Error al guardar en Supabase:', error);
-    return res.status(500).json({ error: 'Supabase insert failed' });
-  }
+    if (error) {
+        console.error('❌ Error al guardar en Supabase:', error);
+        return res.status(500).json({
+          error: 'Supabase insert failed',
+          details: error.message, // 👈 importante
+        });
+      }
 
   return res.status(200).json({ success: true, data });
 }
