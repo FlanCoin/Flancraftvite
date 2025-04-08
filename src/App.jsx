@@ -96,7 +96,7 @@ function AppContent({ isMobile }) {
             }
           />
           <Route path="/news" element={<NewsSection />} />
-          <Route path="/news/:id" element={<NewsPage />} />
+          <Route path="/news/:slug" element={<NewsPage />} />
           <Route path="/store" element={<Store />} />
 
 

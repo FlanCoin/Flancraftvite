@@ -1,4 +1,3 @@
-// src/components/news/NewsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import client, { urlFor } from '../../sanityClient'; // Importar la función urlFor
@@ -7,7 +6,8 @@ import { FaTelegramPlane, FaFacebook, FaTwitter, FaReddit, FaDiscord, FaShareAlt
 import './NewsPage.css';
 
 const NewsPage = () => {
-  const { id } = useParams();
+  const { slug } = useParams();  // Obtén el slug de la URL
+  console.log("Slug recibido:", slug);  // Verifica que el slug esté presente
   const navigate = useNavigate();
   const [news, setNews] = useState(null);
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -16,28 +16,50 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
+        // Si tenemos un slug, buscamos directamente la noticia por el slug
         const data = await client.fetch(
-          `*[_type == "news" && _id == $id][0]{
+          `*[_type == "news" && slug.current == $slug][0]{
             title,
             content,
             date,
-            "imageUrl": image.asset->url
+            "imageUrl": image.asset->url,
+            _id
           }`,
-          { id }
+          { slug }
         );
+        
+        // Si no encontramos la noticia, buscamos por ID (es decir, la ruta que contiene el ID)
+        if (!data) {
+          const dataById = await client.fetch(
+            `*[_type == "news" && _id == $slug][0]{
+              title,
+              content,
+              date,
+              "imageUrl": image.asset->url,
+              slug
+            }`,
+            { slug }
+          );
 
-        if (data) {
-          setNews(data);
+          if (dataById) {
+            // Si encontramos la noticia por ID, redirigimos a la URL con el slug
+            navigate(`/news/${dataById.slug.current}`);
+            return;
+          } else {
+            console.error("Error: Datos de la noticia no encontrados.");
+          }
         } else {
-          console.error("Error: Datos de la noticia no encontrados.");
+          setNews(data);  // Si encontramos la noticia por slug, la mostramos
         }
       } catch (error) {
         console.error("Error fetching news from Sanity:", error);
       }
     };
-
+    
     fetchNews();
-  }, [id]);
+  }, [slug, navigate]);  // Añadimos `navigate` y `slug` como dependencias
+  
+
 
   if (!news) return <p>Cargando...</p>;
 
