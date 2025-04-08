@@ -25,18 +25,19 @@ export default async function handler(req, res) {
   }
 
   const { data, error } = await supabase
-    .from('jails')
-    .insert([
-      {
-        uuid: jail.uuid,
-        name: jail.name,
-        moderator: jail.moderator,
-        duration: jail.duration,
-        timestamp: Number(jail.timestamp),
-        server: jail.server,
-        type: jail.type || null
-      }
-    ]);
+  .from('"Jail"')
+  .insert([
+    {
+      uuid: jail.uuid,
+      name: jail.name,
+      moderator: jail.moderator,
+      duration: jail.duration,
+      timestamp: Number(jail.timestamp),
+      server: jail.server,
+      type: jail.type || null
+    }
+  ]);
+
 
   if (error) {
     console.error('❌ Error al guardar en Supabase:', {
