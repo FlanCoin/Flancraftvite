@@ -7,7 +7,6 @@ import './NewsPage.css';
 
 const NewsPage = () => {
   const { slug } = useParams();  // Obtén el slug de la URL
-  console.log("Slug recibido:", slug);  // Verifica que el slug esté presente
   const navigate = useNavigate();
   const [news, setNews] = useState(null);
   const [showShareMenu, setShowShareMenu] = useState(false);
@@ -16,7 +15,7 @@ const NewsPage = () => {
   useEffect(() => {
     const fetchNews = async () => {
       try {
-        // Si tenemos un slug, buscamos directamente la noticia por el slug
+        // Primero, buscamos la noticia por slug
         const data = await client.fetch(
           `*[_type == "news" && slug.current == $slug][0]{
             title,
@@ -28,7 +27,7 @@ const NewsPage = () => {
           { slug }
         );
         
-        // Si no encontramos la noticia, buscamos por ID (es decir, la ruta que contiene el ID)
+        // Si no encontramos la noticia por slug, buscamos por ID
         if (!data) {
           const dataById = await client.fetch(
             `*[_type == "news" && _id == $slug][0]{
@@ -42,8 +41,8 @@ const NewsPage = () => {
           );
 
           if (dataById) {
-            // Si encontramos la noticia por ID, redirigimos a la URL con el slug
-            navigate(`/news/${dataById.slug.current}`);
+            // Redirigimos inmediatamente a la URL con el slug
+            navigate(`/news/${dataById.slug.current}`, { replace: true });
             return;
           } else {
             console.error("Error: Datos de la noticia no encontrados.");
@@ -55,11 +54,9 @@ const NewsPage = () => {
         console.error("Error fetching news from Sanity:", error);
       }
     };
-    
+
     fetchNews();
   }, [slug, navigate]);  // Añadimos `navigate` y `slug` como dependencias
-  
-
 
   if (!news) return <p>Cargando...</p>;
 
