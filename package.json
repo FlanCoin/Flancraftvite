@@ -15,6 +15,7 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@portabletext/react": "^3.2.1",
     "@sanity/client": "^6.28.4",
+    "@sanity/image-url": "^1.1.0",
     "firebase": "^11.6.0",
     "flancraft-vite": "file:",
     "framer-motion": "^12.6.2",

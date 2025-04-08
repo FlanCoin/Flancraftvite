@@ -1,17 +1,9 @@
 // src/components/news/NewsPage.jsx
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import client from '../../sanityClient';
+import client, { urlFor } from '../../sanityClient'; // Importar la función urlFor
 import { PortableText } from '@portabletext/react';
-import {
-  FaTelegramPlane,
-  FaFacebook,
-  FaTwitter,
-  FaReddit,
-  FaDiscord,
-  FaShareAlt,
-  FaClipboard
-} from 'react-icons/fa';
+import { FaTelegramPlane, FaFacebook, FaTwitter, FaReddit, FaDiscord, FaShareAlt, FaClipboard } from 'react-icons/fa';
 import './NewsPage.css';
 
 const NewsPage = () => {
@@ -62,6 +54,17 @@ const NewsPage = () => {
 
   const portableTextComponents = {
     types: {
+      image: ({ value }) => {
+        const { alt, caption, asset } = value;
+        const imageUrl = urlFor(asset).width(800).url(); // Usamos la función `urlFor` aquí
+
+        return (
+          <div className="image-container">
+            <img src={imageUrl} alt={alt} className="newsPage-image" />
+            {caption && <figcaption>{caption}</figcaption>}
+          </div>
+        );
+      },
       youtube: ({ value }) => {
         const { url } = value;
         if (!url) return <p>Video no válido</p>;
