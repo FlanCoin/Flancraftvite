@@ -32,7 +32,7 @@ export default async function handler(req, res) {
         name: jail.name,
         moderator: jail.moderator,
         duration: jail.duration,
-        timestamp: jail.timestamp,
+        timestamp: Number(jail.timestamp),
         server: jail.server,
         type: jail.type || null
       }
