@@ -6,7 +6,9 @@ const supabase = createClient(
 );
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
+  if (req.method !== 'POST') {
+    return res.status(405).json({ error: 'Method not allowed' });
+  }
 
   const token = req.headers['x-api-key'];
   if (token !== process.env.JAILTRACKER_SECRET) {
@@ -15,7 +17,10 @@ export default async function handler(req, res) {
 
   const jail = req.body;
 
+  console.log('📥 Jail recibido:', jail);
+
   if (!jail.uuid || !jail.name || !jail.moderator || !jail.timestamp) {
+    console.warn('⚠️ Falta algún campo requerido');
     return res.status(400).json({ error: 'Missing jail data' });
   }
 
@@ -33,13 +38,20 @@ export default async function handler(req, res) {
       }
     ]);
 
-    if (error) {
-        console.error('❌ Error al guardar en Supabase:', error);
-        return res.status(500).json({
-          error: 'Supabase insert failed',
-          details: error.message, // 👈 importante
-        });
-      }
+  if (error) {
+    console.error('❌ Error al guardar en Supabase:', {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+
+    return res.status(500).json({
+      error: 'Supabase insert failed',
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+    });
+  }
 
   return res.status(200).json({ success: true, data });
 }
