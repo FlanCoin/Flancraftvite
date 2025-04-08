@@ -40,18 +40,13 @@ export default async function handler(req, res) {
 
 
   if (error) {
-    console.error('❌ Error al guardar en Supabase:', {
-      message: error.message,
-      details: error.details,
-      hint: error.hint,
-    });
+    console.error('❌ Error al guardar en Supabase (raw):', error);
+
 
     return res.status(500).json({
-      error: 'Supabase insert failed',
-      message: error.message,
-      details: error.details,
-      hint: error.hint,
-    });
+        error: 'Supabase insert failed',
+        raw: error
+      });
   }
 
   return res.status(200).json({ success: true, data });
