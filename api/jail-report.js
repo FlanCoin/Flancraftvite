@@ -15,7 +15,6 @@ export default async function handler(req, res) {
 
   const jail = req.body;
 
-  // Validación rápida
   if (!jail.uuid || !jail.name || !jail.moderator || !jail.timestamp) {
     return res.status(400).json({ error: 'Missing jail data' });
   }
@@ -30,7 +29,7 @@ export default async function handler(req, res) {
         duration: jail.duration,
         timestamp: jail.timestamp,
         server: jail.server,
-        type: null // aún sin clasificar
+        type: jail.type || null
       }
     ]);
 
