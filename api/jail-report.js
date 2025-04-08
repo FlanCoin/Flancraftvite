@@ -25,7 +25,7 @@ export default async function handler(req, res) {
   }
 
   const { data, error } = await supabase
-  .from('"Jail"')
+  .from('jail_test')
   .insert([
     {
       uuid: jail.uuid,
