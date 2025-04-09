@@ -280,12 +280,10 @@
   
   .strikes-container li {
     font-size: 15px;
-    margin-bottom: 4px;
+    margin-bottom: 5px;
     padding-left: 20px;
     position: relative;
   }
-  
-
   
   
   @media (max-width: 768px) {
