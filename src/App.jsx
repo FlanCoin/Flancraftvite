@@ -10,7 +10,7 @@ import { SectionProvider } from './context/SectionContext';
 import './styles/App.css';
 import './components/Sidebar.css';
 import StatsSection from './components/StatsSection';
-import Sanciones from './pages/sanciones';
+import Sanciones from './pages/Sanciones';
 import AdminPanel from './pages/admin';
 import Login from './pages/login';
 import StaffPanel from './pages/staff';
