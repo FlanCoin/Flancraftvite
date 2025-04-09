@@ -1,8 +1,21 @@
 import React, { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faNewspaper, faStore, faGamepad, faChartLine } from '@fortawesome/free-solid-svg-icons';
-import { faDiscord, faYoutube, faTiktok, faTwitter, faInstagram, faTelegram } from '@fortawesome/free-brands-svg-icons';
+import {
+  faNewspaper,
+  faStore,
+  faGamepad,
+  faChartLine,
+  faSkullCrossbones
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faDiscord,
+  faYoutube,
+  faTiktok,
+  faTwitter,
+  faInstagram,
+  faTelegram
+} from '@fortawesome/free-brands-svg-icons';
 import { SectionContext } from '../context/SectionContext';
 import './Navbar.css';
 
@@ -15,44 +28,55 @@ const Navbar = () => {
 
   return (
     <nav className="desktop-navbar">
-      <div className="desktop-navbar-socials">
-        <a href="https://dsc.gg/flancraft" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faDiscord} />
-        </a>
-        <a href="https://www.youtube.com/@Flancraft" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faYoutube} />
-        </a>
-        <a href="https://www.tiktok.com/@flancraftserver" target="_blank" rel="noopener noreferrer">
-          <FontAwesomeIcon icon={faTiktok} />
-        </a>
-        <a href="https://www.instagram.com/flancraftserver/" target="_blank" rel="noopener noreferrer">
-             <FontAwesomeIcon icon={faInstagram} />
+      <div className="navbar-inner">
+        {/* Socials izquierda */}
+        <div className="desktop-navbar-socials">
+          <a href="https://dsc.gg/flancraft" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faDiscord} />
           </a>
-            <a href="https://x.com/flancraftserver" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.youtube.com/@Flancraft" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faYoutube} />
+          </a>
+          <a href="https://www.tiktok.com/@flancraftserver" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faTiktok} />
+          </a>
+          <a href="https://www.instagram.com/flancraftserver/" target="_blank" rel="noopener noreferrer">
+            <FontAwesomeIcon icon={faInstagram} />
+          </a>
+          <a href="https://x.com/flancraftserver" target="_blank" rel="noopener noreferrer">
             <FontAwesomeIcon icon={faTwitter} />
           </a>
           <a href="https://t.me/flancraft" target="_blank" rel="noopener noreferrer">
-                      <FontAwesomeIcon icon={faTelegram} />
-                    </a>
+            <FontAwesomeIcon icon={faTelegram} />
+          </a>
+        </div>
+
+        {/* Centro absoluto: botones principales */}
+        <div className="desktop-navbar-center">
+          <NavLink to="/" className="desktop-navbar-link flancraft-button" onClick={handleFlancraftClick}>
+            <FontAwesomeIcon icon={faGamepad} /> Flancraft
+          </NavLink>
+
+          <NavLink to="/stats" className="desktop-navbar-link">
+            <FontAwesomeIcon icon={faChartLine} /> Stats
+          </NavLink>
+
+          <NavLink to="/news" className="desktop-navbar-link">
+            <FontAwesomeIcon icon={faNewspaper} /> News
+          </NavLink>
+
+          <NavLink to="/store" className="desktop-navbar-link desktop-store-button">
+            <FontAwesomeIcon icon={faStore} /> Store
+          </NavLink>
+        </div>
+
+        {/* Derecha absoluta: botón sanciones */}
+        <div className="desktop-navbar-sanciones">
+          <NavLink to="/sanciones" className="desktop-navbar-link desktop-sanciones-button">
+            <FontAwesomeIcon icon={faSkullCrossbones} /> Sanciones
+          </NavLink>
+        </div>
       </div>
-
-      <div className="desktop-navbar-links">
-  <NavLink to="/" className="desktop-navbar-link flancraft-button" onClick={handleFlancraftClick}>
-  <FontAwesomeIcon icon={faGamepad} /> Flancraft
-  </NavLink>
-
-  <NavLink to="/stats" className="desktop-navbar-link">
-    <FontAwesomeIcon icon={faChartLine} /> Stats
-  </NavLink>
-
-  <NavLink to="/news" className="desktop-navbar-link">
-    <FontAwesomeIcon icon={faNewspaper} /> News
-  </NavLink>
-
-  <NavLink to="/store" className="desktop-navbar-link desktop-store-button">
-    <FontAwesomeIcon icon={faStore} /> Store
-  </NavLink>
-</div>
     </nav>
   );
 };

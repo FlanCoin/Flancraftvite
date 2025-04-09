@@ -3,11 +3,9 @@
 /* ============ Estilos del Navbar Principal (Escritorio) ============ */
 .desktop-navbar {
   position: relative;
-  justify-content: space-between;
-  background-color: #B9AB83;
   display: flex;
-  justify-content: center;
   align-items: center;
+  background-color: #B9AB83;
   padding: 10px 0;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   position: fixed;
@@ -17,6 +15,7 @@
   z-index: 20;
   border-bottom: 4px solid #412624;
 }
+
 
 .desktop-navbar::after {
   content: '';
@@ -34,11 +33,11 @@
 
 .desktop-navbar-socials {
   position: absolute;
-  left: 20px;
+  left: 0; /* 👈 esto las pega totalmente */
+  padding-left: 20px;
   display: flex;
   align-items: center;
   gap: 15px;
-  z-index: 101;
 }
 
 .desktop-navbar-socials a {
@@ -178,4 +177,47 @@
   min-width: 130px;  /* Fuerza ancho mínimo igual para todos */
   text-align: center;
   justify-content: center;
+}
+/* NUEVO: Alinea el botón de sanciones a la derecha */
+.desktop-navbar-sanciones {
+  position: absolute;
+  right: 0; /* 👈 esto lo pega totalmente */
+  padding-right: 20px;
+  display: flex;
+  align-items: center;
+}
+.desktop-sanciones-button {
+  background: linear-gradient(145deg, #e53935, #d32f2f);
+  color: #fff;
+  font-weight: bold;
+  padding: 10px 16px;
+  border-radius: 8px;
+  border: 2px solid #412624; /* ✅ Restaura el borde */
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.desktop-sanciones-button:hover {
+  background: linear-gradient(145deg, #c62828, #b71c1c);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
+}
+/* Nuevo contenedor interior para separar los lados */
+.navbar-inner {
+  position: relative;
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Centro lógico */
+}
+/* NUEVO - Centra los botones del medio */
+.desktop-navbar-center {
+  display: flex;
+  gap: 15px;
+  z-index: 1;
 }

@@ -1,4 +1,4 @@
-// src/App.js
+// src/App.jsx
 import React, { Suspense, useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import LoadingScreen from './components/LoadingScreen';
@@ -10,9 +10,15 @@ import { SectionProvider } from './context/SectionContext';
 import './styles/App.css';
 import './components/Sidebar.css';
 import StatsSection from './components/StatsSection';
+import Sanciones from './pages/sanciones';
+import AdminPanel from './pages/admin';
+import Login from './pages/login';
+import StaffPanel from './pages/staff';
+import PerfilJugador from './pages/PerfilJugador';
+import AnimatedPage from './components/AnimatedPage';
+import { AnimatePresence } from 'framer-motion';
 
-
-// Lazy load para las secciones principales
+// Lazy load
 const Lobby = React.lazy(() => import('./components/Lobby'));
 const Dungeon = React.lazy(() => import('./components/Dungeon'));
 const SlimeFun = React.lazy(() => import('./components/SlimeFun'));
@@ -39,9 +45,7 @@ function App() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 1282);
-    };
+    const handleResize = () => setIsMobile(window.innerWidth < 1282);
     handleResize();
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
@@ -59,52 +63,58 @@ function App() {
 }
 
 function AppContent({ isMobile }) {
+  const location = useLocation();
+
   return (
     <div className="App">
       {isMobile ? <MobileNavbar /> : <Navbar />}
 
-      {/* Rutas principales */}
       <Suspense fallback={<div>Cargando...</div>}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <>
-                <Sidebar />
-                <div className="flancraft-container">
-                  <div id="lobby" className="section">
-                    <Lobby />
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route
+              path="/"
+              element={
+                <AnimatedPage>
+                  <Sidebar />
+                  <div className="flancraft-container">
+                    <div id="lobby" className="section">
+                      <Lobby />
+                    </div>
+                    <div id="dungeon" className="section">
+                      <Dungeon />
+                    </div>
+                    <div id="slimefun" className="section">
+                      <SlimeFun />
+                    </div>
+                    <div id="crates" className="section">
+                      <Crates />
+                    </div>
+                    <div id="quests" className="section">
+                      <Quests />
+                    </div>
+                    <div id="play" className="section">
+                      <Play />
+                    </div>
                   </div>
+                </AnimatedPage>
+              }
+            />
 
-                  <div id="dungeon" className="section">
-                    <Dungeon />
-                  </div>
-                  <div id="slimefun" className="section">
-                    <SlimeFun />
-                  </div>
-                  <div id="crates" className="section">
-                    <Crates />
-                  </div>
-                  <div id="quests" className="section">
-                    <Quests />
-                  </div>
-                  <div id="play" className="section">
-                    <Play />
-                  </div>
-                </div>
-              </>
-            }
-          />
-          <Route path="/news" element={<NewsSection />} />
-          <Route path="/news/:slug" element={<NewsPage />} />
-          <Route path="/store" element={<Store />} />
+            {/* Animadas */}
+            <Route path="/sanciones" element={<AnimatedPage><Sanciones /></AnimatedPage>} />
+            <Route path="/perfil/:nombre" element={<AnimatedPage><PerfilJugador /></AnimatedPage>} />
+            <Route path="/admin" element={<AnimatedPage><AdminPanel /></AnimatedPage>} />
+            <Route path="/login" element={<AnimatedPage><Login /></AnimatedPage>} />
+            <Route path="/staff" element={<AnimatedPage><StaffPanel /></AnimatedPage>} />
+            <Route path="/stats" element={<AnimatedPage><StatsSection /></AnimatedPage>} />
+            <Route path="/news" element={<AnimatedPage><NewsSection /></AnimatedPage>} />
+            <Route path="/news/:slug" element={<AnimatedPage><NewsPage /></AnimatedPage>} />
+            <Route path="/store" element={<AnimatedPage><Store /></AnimatedPage>} />
 
-
-          {/* Ruta independiente para StatsSection */}
-          <Route path="/stats" element={<StatsSection />} />
-
-          <Route path="*" element={<div>Página no encontrada</div>} />
-        </Routes>
+            <Route path="*" element={<AnimatedPage><div>Página no encontrada</div></AnimatedPage>} />
+          </Routes>
+        </AnimatePresence>
       </Suspense>
 
       <Footer />

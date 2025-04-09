@@ -141,21 +141,6 @@
   }
   
   
-  
-  /* Botón de Marketplace */
-  .mobile-marketplace-button {
-      background-color: #A7EB64 !important;
-      color: #412624;
-      padding: 5px 15px; /* Ajustado el tamaño */
-      border: 3px solid #412624;
-      transition: background-color 0.3s ease, box-shadow 0.3s ease;
-      box-shadow: inset 0 0 0px #000, 3px 3px 6px rgba(0, 0, 0, 0.4), -3px -3px 6px rgba(255, 255, 255, 0.1);
-    }
-    
-    .mobile-marketplace-button:hover {
-      background-color: #8AEF40;
-    }
-  
   /* ================== Sección de Redes Sociales ================== */
   .mobile-navbar-socials {
     margin: 15px auto 10px;
@@ -164,7 +149,6 @@
     gap: 20px 10px;
     padding: 20px 0;
     width: 80%;
-    border-top: 3px solid #958866;
     justify-items: center;
   }
   
@@ -256,3 +240,31 @@
       }
     }
   
+    .mobile-sanciones-button {
+      background: linear-gradient(145deg, #e53935, #d32f2f);
+      color: white;
+      font-weight: bold;
+      padding: 10px 16px;
+      border: 2px solid #412624;
+      border-radius: 8px;
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+      transition: all 0.3s ease;
+    }
+    
+    .mobile-sanciones-button:hover {
+      background: linear-gradient(145deg, #c62828, #b71c1c);
+      transform: translateY(-2px);
+    }
+    .mobile-navbar-divider {
+      width: 80%;
+      height: 0;
+      border-top: 3px solid #958866;
+      margin: 10px auto;
+    }
+    
+    
