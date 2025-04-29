@@ -12,7 +12,7 @@ export default function StaffPanel() {
   const [rol, setRol] = useState('');
   const [staffList, setStaffList] = useState([]);
   const [nuevoEmail, setNuevoEmail] = useState('');
-  const [nuevoRol, setNuevoRol] = useState('mod', 'srmod');
+  const [nuevoRol, setNuevoRol] = useState('mod');
   
   const [editingEmail, setEditingEmail] = useState(null);
   const [rolEditado, setRolEditado] = useState('');
@@ -55,15 +55,31 @@ export default function StaffPanel() {
 
   const agregarStaff = async () => {
     if (!nuevoEmail || !nuevoRol) return;
-
+  
+    // Crear usuario real en Supabase Auth
+    const { data, error } = await supabase.auth.admin.createUser({
+      email: nuevoEmail,
+      password: 'ContraseñaPorDefecto123', // Puedes luego obligarle a cambiarla manualmente si quieres
+      email_confirm: true
+    });
+  
+    if (error) {
+      console.error('Error creando usuario:', error.message);
+      alert('Error creando usuario: ' + error.message);
+      return;
+    }
+  
+    // Insertar su rol en staff_roles
     await supabase
       .from('staff_roles')
-      .upsert({ email: nuevoEmail, rol: nuevoRol });
-
+      .insert({ email: nuevoEmail, rol: nuevoRol });
+  
     setNuevoEmail('');
-    setNuevoRol('mod, srmod');
+    setNuevoRol('mod');
     cargarStaff();
   };
+  
+  
 
   const eliminarStaff = async (email) => {
     if (confirm(`¿Seguro que deseas eliminar a ${email}?`)) {
@@ -120,7 +136,7 @@ export default function StaffPanel() {
         <thead>
           <tr>
             <th>Correo</th>
-            <th>Rol</th>
+            <th>Rol / Nivel</th>
             <th>Acción</th>
           </tr>
         </thead>
@@ -129,19 +145,18 @@ export default function StaffPanel() {
             <tr key={index}>
               <td>{s.email}</td>
               <td>
-                {editingEmail === s.email ? (
-                  <select
-                    value={rolEditado}
-                    onChange={(e) => setRolEditado(e.target.value)}
-                  >
-                    <option value="mod">mod</option>
-                    <option value="srmod">SrMod</option>
-                    <option value="admin">admin</option>
-                  </select>
-                ) : (
-                  s.rol
-                )}
-              </td>
+  {editingEmail === s.email ? (
+    <select value={rolEditado} onChange={(e) => setRolEditado(e.target.value)}>
+      <option value="mod">mod</option>
+      <option value="srmod">SrMod</option>
+      <option value="admin">admin</option>
+    </select>
+  ) : (
+    <>
+      {s.rol} {s.nivel === 'owner' && <strong>(Owner)</strong>}
+    </>
+  )}
+</td>
               <td>
                 {editingEmail === s.email ? (
                   <button
