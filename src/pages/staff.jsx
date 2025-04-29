@@ -12,7 +12,8 @@ export default function StaffPanel() {
   const [rol, setRol] = useState('');
   const [staffList, setStaffList] = useState([]);
   const [nuevoEmail, setNuevoEmail] = useState('');
-  const [nuevoRol, setNuevoRol] = useState('mod');
+  const [nuevoRol, setNuevoRol] = useState('mod', 'srmod');
+  
   const [editingEmail, setEditingEmail] = useState(null);
   const [rolEditado, setRolEditado] = useState('');
 
@@ -60,7 +61,7 @@ export default function StaffPanel() {
       .upsert({ email: nuevoEmail, rol: nuevoRol });
 
     setNuevoEmail('');
-    setNuevoRol('mod');
+    setNuevoRol('mod, srmod');
     cargarStaff();
   };
 
@@ -109,6 +110,7 @@ export default function StaffPanel() {
         />
         <select value={nuevoRol} onChange={(e) => setNuevoRol(e.target.value)}>
           <option value="mod">Mod</option>
+          <option value="srmod">SrMod</option>
           <option value="admin">Admin</option>
         </select>
         <button onClick={agregarStaff} className="btn">➕ Añadir</button>
@@ -133,6 +135,7 @@ export default function StaffPanel() {
                     onChange={(e) => setRolEditado(e.target.value)}
                   >
                     <option value="mod">mod</option>
+                    <option value="srmod">SrMod</option>
                     <option value="admin">admin</option>
                   </select>
                 ) : (
