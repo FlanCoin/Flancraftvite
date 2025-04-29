@@ -1,11 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { createClient } from '@supabase/supabase-js';
 import './admin.css';
+import { supabase } from '../lib/supabaseClient';
 
-const supabase = createClient(
-  import.meta.env.VITE_SUPABASE_URL,
-  import.meta.env.VITE_SUPABASE_KEY
-);
 
 export default function StaffPanel() {
   const [userEmail, setUserEmail] = useState('');
@@ -52,34 +48,31 @@ export default function StaffPanel() {
     const { data } = await supabase.from('staff_roles').select('*').order('email', { ascending: true });
     setStaffList(data);
   };
-
+  
   const agregarStaff = async () => {
     if (!nuevoEmail || !nuevoRol) return;
   
-    // Crear usuario real en Supabase Auth
-    const { data, error } = await supabase.auth.admin.createUser({
-      email: nuevoEmail,
-      password: 'ContraseñaPorDefecto123', // Puedes luego obligarle a cambiarla manualmente si quieres
-      email_confirm: true
+    const res = await fetch('/api/create-staff', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email: nuevoEmail,
+        password: 'contraseña123', // Aquí puedes pedir o generar la contraseña
+        rol: nuevoRol,
+      }),
     });
   
-    if (error) {
-      console.error('Error creando usuario:', error.message);
-      alert('Error creando usuario: ' + error.message);
-      return;
+    const result = await res.json();
+  
+    if (res.ok) {
+      alert('Usuario creado correctamente');
+      setNuevoEmail('');
+      setNuevoRol('mod');
+      cargarStaff();
+    } else {
+      alert('Error: ' + result.error);
     }
-  
-    // Insertar su rol en staff_roles
-    await supabase
-      .from('staff_roles')
-      .insert({ email: nuevoEmail, rol: nuevoRol });
-  
-    setNuevoEmail('');
-    setNuevoRol('mod');
-    cargarStaff();
   };
-  
-  
 
   const eliminarStaff = async (email) => {
     if (confirm(`¿Seguro que deseas eliminar a ${email}?`)) {
