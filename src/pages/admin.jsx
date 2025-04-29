@@ -258,7 +258,7 @@ export default function AdminPanel() {
                         ✏️ Editar
                       </button>
 
-                      {(['admin', 'owner', 'srmod'].includes(userRol)) && (
+                      {(userRol === 'admin' || userRol === 'srmod' || userRol === 'owner' ) && (
                         <button
                           className="btn eliminar"
                           onClick={() => eliminarSancion(s.id, s.name)}
