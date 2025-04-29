@@ -36,10 +36,10 @@ export default function AdminPanel() {
       setUserEmail(email);
 
       const { data: rolData } = await supabase
-  .from('staff_roles')
-  .select('*')
-  .eq('email', email)
-  .single();
+        .from('staff_roles')
+        .select('rol')
+        .eq('email', email)
+        .single();
 
       if (!rolData) {
         alert('No tienes permisos para acceder aquí');
@@ -258,7 +258,7 @@ export default function AdminPanel() {
                         ✏️ Editar
                       </button>
 
-                      {(userRol === 'admin' || userRol === 'owner') && (
+                      {(userRol === 'admin' || userRol === 'srmod' || userRol === 'owner' ) && (
                         <button
                           className="btn eliminar"
                           onClick={() => eliminarSancion(s.id, s.name)}
